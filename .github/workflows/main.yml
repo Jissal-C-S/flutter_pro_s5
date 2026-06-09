@@ -23,13 +23,18 @@ jobs:
         flutter-version: '3.x'
         
     # 3. Get dependencies
-    - run: flutter pub get
+    - name: Install dependencies
+      run: flutter pub get
+      working-directory: hostel_app
       
     # 4. Build the APK
-    - run: flutter build apk --release
+    - name: Build APK
+      run: flutter build apk --release
+      working-directory: hostel_app
       
     # 5. Upload the final APK (Fixed: path now matches root-level project)
-    - uses: actions/upload-artifact@v4
+    - name: Upload Artifact
+      uses: actions/upload-artifact@v4
       with:
         name: release-apk
         path: hostel_app/build/app/outputs/flutter-apk/app-release.apk
