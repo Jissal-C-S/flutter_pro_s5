@@ -11,7 +11,7 @@ jobs:
     # NEW: This tells GitHub to run all commands inside your app's folder
     defaults:
       run:
-        working-directory: ./hostel_app
+        working-directory: ./flutter_pro_s5
 
     steps:
     - uses: actions/checkout@v4
