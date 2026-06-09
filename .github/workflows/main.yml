@@ -8,11 +8,6 @@ jobs:
   build:
     runs-on: ubuntu-latest
     
-    # NEW: This tells GitHub to run all commands inside your app's folder
-    defaults:
-      run:
-        working-directory: ./flutter_pro_s5
-
     steps:
     - uses: actions/checkout@v4
     
@@ -22,20 +17,20 @@ jobs:
         distribution: 'zulu'
         java-version: '17' 
         
-    # 2. Setup Flutter
-    - uses: subosito/flutter-action@v3
+    # 2. Setup Flutter (Fixed: v3 -> v4)
+    - uses: subosito/flutter-action@v4.8.0
       with:
         flutter-version: '3.x'
         
-    # 3. Get dependencies (Will now run inside ./hostel_app)
+    # 3. Get dependencies
     - run: flutter pub get
       
-    # 4. Build the APK (Will now run inside ./hostel_app)
+    # 4. Build the APK
     - run: flutter build apk --release
       
-    # 5. Upload the final APK
+    # 5. Upload the final APK (Fixed: path now matches root-level project)
     - uses: actions/upload-artifact@v4
       with:
         name: release-apk
-        # NEW: The path must include your hostel_app folder
+        path: build/app/outputs/flutter-apk/app-release.apk
         path: hostel_app/build/app/outputs/flutter-apk/app-release.apk
