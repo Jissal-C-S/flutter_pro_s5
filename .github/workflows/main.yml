@@ -25,12 +25,10 @@ jobs:
     # 3. Get dependencies
     - name: Install dependencies
       run: flutter pub get
-      working-directory: hostel_app
       
     # 4. Build the APK
     - name: Build APK
       run: flutter build apk --release
-      working-directory: hostel_app
       
     # 5. Upload the final APK (Fixed: path now matches root-level project)
     - name: Upload Artifact
